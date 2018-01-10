@@ -61,14 +61,15 @@ module Telebot
     # @param reply_markup [ReplyKeyboardMarkup, ReplyKeyboardHide, ForceReply] Additional interface options
     #
     # @return [Telebot::Message]
-    def send_message(chat_id:, text:, parse_mode: nil, disable_web_page_preview: false, reply_to_message_id: nil, reply_markup: nil)
+    def send_message(chat_id:, text:, disable_notification: nil, parse_mode: nil, disable_web_page_preview: false, reply_to_message_id: nil, reply_markup: nil)
       result = call(:sendMessage,
         chat_id: chat_id,
         text: text,
         disable_web_page_preview: disable_web_page_preview,
         reply_to_message_id: reply_to_message_id,
         reply_markup: reply_markup,
-        parse_mode: parse_mode
+        parse_mode: parse_mode,
+        disable_notification: disable_notification
       )
       Message.new(result)
     end
